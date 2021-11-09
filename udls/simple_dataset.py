@@ -8,6 +8,7 @@ from tqdm import tqdm
 import numpy as np
 from scipy.io.wavfile import read as read_wav_file
 
+
 def dummy_load(name):
     """
     Preprocess function that takes one audio path and load it into
@@ -59,6 +60,7 @@ class SimpleDataset(torch.utils.data.Dataset):
         super().__init__()
 
         assert folder_list is not None or file_list is not None
+        makedirs(out_database_location, exist_ok=True)
 
         self.env = SimpleLMDBDataset(out_database_location, map_size)
 
@@ -69,8 +71,6 @@ class SimpleDataset(torch.utils.data.Dataset):
         self.extension = extension
 
         self.transforms = transforms
-
-        makedirs(out_database_location, exist_ok=True)
 
         # IF NO DATA INSIDE DATASET: PREPROCESS
         self.len = len(self.env)
