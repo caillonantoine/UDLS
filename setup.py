@@ -8,7 +8,7 @@ with open("requirements.txt", "r") as requirements:
 
 setuptools.setup(
     name="udls",  # Replace with your own username
-    version="1.1",
+    version="1.2",
     author="Antoine CAILLON",
     author_email="caillon@ircam.fr",
     description="Base class and presets for fast dataset creation inside IRCAM",
@@ -22,7 +22,8 @@ setuptools.setup(
     ],
     entry_points={
         "console_scripts": [
-            "resample = udls.resample:main"
+            "resample = udls.resample:main",
+            "duration = udls.duration:main"
         ]
     },
     install_requires=requirements.split("\n"),
