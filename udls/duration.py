@@ -11,7 +11,7 @@ def main():
     minutes = math.floor((d % 3600)/60)
     seconds = math.floor(d % 60)
     print(f"Found {len(durations)} .wav files")
-    print(f"total duration: {hours}h{minutes:02d}mn{seconds:02d}s")
+    print(f"total duration: {hours}h {minutes:02d}m {seconds:02d}s")
 
 
 if __name__ == "__main__":
