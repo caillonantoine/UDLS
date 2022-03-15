@@ -3,6 +3,7 @@ from os import system, path, makedirs
 import argparse
 import sys
 
+
 def main():
     parser = argparse.ArgumentParser(description='Audio dataset preprocessing')
     parser.add_argument(
@@ -11,8 +12,12 @@ def main():
         default=["wav", "mp3", "opus", "ogg", "aif", "aiff", "flac"],
         help='input dataset format')
     parser.add_argument('--sr', default="44100", help='target sampling rate')
-    parser.add_argument("--output", default=".", help="output directory location")
-    parser.add_argument("--input", default=".", help="input directory location")
+    parser.add_argument("--output",
+                        default=".",
+                        help="output directory location")
+    parser.add_argument("--input",
+                        default=".",
+                        help="input directory location")
     parser.add_argument("--len",
                         default=600,
                         help="length (in second) of target audio")
@@ -43,12 +48,12 @@ def main():
 
     except KeyboardInterrupt:
         print("exiting...")
-    
+
     # AUGMENTATION
 
     if not args.augment:
         return
-        
+
     files = []
     for f in Path(out_dir).rglob("*.wav"):
         files.append(f)
@@ -70,5 +75,5 @@ def main():
         print("exiting...")
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     sys.exit(main())

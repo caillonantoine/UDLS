@@ -34,6 +34,11 @@ def simple_audio_preprocess(sampling_rate, N):
             print(e)
             return None
 
+        if len(x) < N:
+            return None
+
+        x = x / np.max(abs(x))
+
         pad = (N - (len(x) % N)) % N
         x = np.pad(x, (0, pad))
 
