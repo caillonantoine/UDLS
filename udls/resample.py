@@ -66,7 +66,7 @@ def main():
             out_name = f"aug_{path.basename(elm)}"
             cmd = f"ffmpeg -loglevel panic -hide_banner "
             cmd += f"-i \"{elm}\" "
-            cmd += "-filter_complex \"compand=points=-80/-80|-15/-15|0/-10.8|20/-5.2:delay=.1\" "
+            cmd += "-filter_complex \"compand=points=-80/-80|-15/-15|0/-10.8|20/-5.2:delay=.1\", dynaudnorm "
             cmd += f"-ar {args.sr} -ac 1 {path.join(out_dir, out_name)}"
 
             system(cmd)
