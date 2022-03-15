@@ -46,6 +46,9 @@ def main():
     
     # AUGMENTATION
 
+    if not args.augment:
+        return
+        
     files = []
     for f in Path(out_dir).rglob("*.wav"):
         files.append(f)
