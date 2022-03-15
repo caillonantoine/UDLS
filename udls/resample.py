@@ -16,6 +16,7 @@ def main():
     parser.add_argument("--len",
                         default=600,
                         help="length (in second) of target audio")
+    parser.add_argument("--augment", default=False, action="store_true")
 
     args = parser.parse_args()
 
@@ -39,8 +40,32 @@ def main():
             cmd += f"-ar {args.sr} -ac 1 {path.join(out_dir, out_name)}"
 
             system(cmd)
+
     except KeyboardInterrupt:
         print("exiting...")
+    
+    # AUGMENTATION
+
+    files = []
+    for f in Path(out_dir).rglob("*.wav"):
+        files.append(f)
+
+    try:
+        for i, elm in enumerate(files):
+            elm = str(elm)
+            print(f"augmenting {path.basename(elm)}")
+
+            out_name = f"audio_{i:05d}_augmented.wav"
+            cmd = f"ffmpeg -loglevel panic -hide_banner "
+            cmd += f"-i \"{elm}\" "
+            cmd += "-filter_complex \"compand=points=-80/-80|-15/-15|0/-10.8|20/-5.2:gain=20dB:delay=.1\" "
+            cmd += f"-ar {args.sr} -ac 1 {path.join(out_dir, out_name)}"
+
+            system(cmd)
+
+    except KeyboardInterrupt:
+        print("exiting...")
+
 
 if __name__=="__main__":
     sys.exit(main())
