@@ -63,7 +63,7 @@ def main():
             elm = str(elm)
             print(f"augmenting {path.basename(elm)}")
 
-            out_name = f"aug_{elm}"
+            out_name = f"aug_{path.basename(elm)}"
             cmd = f"ffmpeg -loglevel panic -hide_banner "
             cmd += f"-i \"{elm}\" "
             cmd += "-filter_complex \"compand=points=-80/-80|-15/-15|0/-10.8|20/-5.2:delay=.1\" "
