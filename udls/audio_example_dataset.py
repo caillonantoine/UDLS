@@ -6,12 +6,13 @@ import numpy as np
 
 class WaveformAudioExampleDataset(data.Dataset):
 
-    def __init__(self, path, buffer_key='waveform') -> None:
+    def __init__(self, path, buffer_key='waveform', transforms=None) -> None:
         super().__init__()
         self.env = lmdb.open(path, readonly=True)
         with self.env.begin() as txn:
             self.keys = list(txn.cursor().iternext(values=False))
         self.buffer_key = buffer_key
+        self.transforms = transforms
 
     def __len__(self):
         return len(self.keys)
@@ -31,4 +32,6 @@ class WaveformAudioExampleDataset(data.Dataset):
 
         array = array.astype(np.float32) / (2**15 - 1)
 
-        return array
+        if self.transforms is not None:
+            data = self.transforms(data)
+        return data
