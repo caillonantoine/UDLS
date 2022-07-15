@@ -7,6 +7,7 @@ class SimpleLMDBDataset(torch.utils.data.Dataset):
     """
     Wraps a LDMB database as a torch compatible Dataset
     """
+
     def __init__(self, out_database_location, map_size=1e9):
         super().__init__()
         self.env = lmdb.open(out_database_location,
