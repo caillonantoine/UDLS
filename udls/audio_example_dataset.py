@@ -1,6 +1,6 @@
 import lmdb
 import torch.utils.data as data
-from .generated.audio_example_pb2 import AudioExample
+from .generated import AudioExample
 import numpy as np
 
 
