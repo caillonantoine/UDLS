@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+package audio_example;
+
+message AudioExample {
+
+  enum Precision {
+    FLOAT16 = 0;
+    FLOAT32 = 1;
+    FLOAT64 = 2;
+    INT16 = 3;
+    INT32 = 4;
+    INT64 = 5;
+  }
+
+  message AudioBuffer {
+    repeated int32 shape = 1;
+    optional int32 sampling_rate = 2;
+    optional bytes data = 3;
+    optional Precision precision = 4;
+    map<string, string> metadata = 5;
+  }
+
+  map<string, AudioBuffer> buffers = 1;
+  map<string, string> metadata = 2;
+  
+}
+

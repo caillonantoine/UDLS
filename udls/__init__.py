@@ -1,2 +1,4 @@
 from .base_dataset import SimpleLMDBDataset
 from .simple_dataset import SimpleDataset, simple_audio_preprocess
+from .audio_example_pb2 import AudioExample
+from .audio_example_dataset import WaveformAudioExampleDataset
