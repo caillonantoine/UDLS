@@ -11,6 +11,7 @@ message AudioExample {
     INT16 = 3;
     INT32 = 4;
     INT64 = 5;
+    RAW = 6;
   }
 
   message AudioBuffer {
@@ -19,6 +20,7 @@ message AudioExample {
     optional bytes data = 3;
     optional Precision precision = 4;
     map<string, string> metadata = 5;
+    optional string format = 6;
   }
 
   map<string, AudioBuffer> buffers = 1;
