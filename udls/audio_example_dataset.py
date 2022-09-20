@@ -1,7 +1,8 @@
 import lmdb
-import torch.utils.data as data
-from .generated import AudioExample
 import numpy as np
+import torch.utils.data as data
+
+from .generated import AudioExample
 
 
 class WaveformAudioExampleDataset(data.Dataset):

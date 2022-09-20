@@ -1,8 +1,9 @@
-import torch
+from random import choice, randint, random
+
 import librosa as li
-from random import random, choice, randint
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import torch
 
 
 class Transform(object):

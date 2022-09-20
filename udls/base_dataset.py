@@ -1,6 +1,7 @@
-import torch
-import lmdb
 import pickle
+
+import lmdb
+import torch
 
 
 class SimpleLMDBDataset(torch.utils.data.Dataset):

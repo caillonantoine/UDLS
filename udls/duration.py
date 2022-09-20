@@ -1,7 +1,8 @@
-import librosa as li
-from glob import glob
-import sys
 import math
+import sys
+from glob import glob
+
+import librosa as li
 
 
 def main():
