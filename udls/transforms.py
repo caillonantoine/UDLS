@@ -1,7 +1,6 @@
 from random import choice, randint, random
 
 import librosa as li
-import matplotlib.pyplot as plt
 import numpy as np
 import torch
 
