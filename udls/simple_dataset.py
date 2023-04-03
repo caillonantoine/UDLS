@@ -27,6 +27,7 @@ def dummy_load(name):
 
 
 def simple_audio_preprocess(sampling_rate, N):
+
     def preprocess(name):
         try:
             x, sr = li.load(name, sr=sampling_rate)
@@ -35,7 +36,6 @@ def simple_audio_preprocess(sampling_rate, N):
         except Exception as e:
             print(e)
             return None
-
 
         pad = (N - (len(x) % N)) % N
         x = np.pad(x, (0, pad))
@@ -47,6 +47,7 @@ def simple_audio_preprocess(sampling_rate, N):
 
 
 class SimpleDataset(torch.utils.data.Dataset):
+
     def __init__(
         self,
         out_database_location,

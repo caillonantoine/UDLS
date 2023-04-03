@@ -6,6 +6,7 @@ import torch
 
 
 class Transform(object):
+
     def __call__(self, x: torch.Tensor):
         raise NotImplementedError
 
@@ -14,6 +15,7 @@ class RandomApply(Transform):
     """
     Apply transform with probability p
     """
+
     def __init__(self, transform, p=.5):
         self.transform = transform
         self.p = p
@@ -28,6 +30,7 @@ class Compose(Transform):
     """
     Apply a list of transform sequentially
     """
+
     def __init__(self, transform_list):
         self.transform_list = transform_list
 
@@ -41,6 +44,7 @@ class RandomChoice(Transform):
     """
     Randomly select a transform from transform list and apply it
     """
+
     def __init__(self, transform_list):
         self.transform_list = transform_list
 
@@ -50,6 +54,7 @@ class RandomChoice(Transform):
 
 
 class PitchShift(Transform):
+
     def __init__(self, mean, std, sr):
         self.mean = mean
         self.std = std
@@ -62,6 +67,7 @@ class PitchShift(Transform):
 
 
 class Reverb(Transform):
+
     def __init__(self, mean, std, sr):
         self.mean = mean
         self.std = std
@@ -92,6 +98,7 @@ class Noise(Transform):
     """
     Adds uniform noise with std 
     """
+
     def __init__(self, std):
         self.std = std
 
@@ -103,6 +110,7 @@ class RandomCrop(Transform):
     """
     Randomly crops signal to fit n_signal samples
     """
+
     def __init__(self, n_signal):
         self.n_signal = n_signal
 
@@ -113,6 +121,7 @@ class RandomCrop(Transform):
 
 
 class Dequantize(Transform):
+
     def __init__(self, bit_depth):
         self.bit_depth = bit_depth
 

@@ -80,10 +80,9 @@ def main():
                               output_dir=out_dir,
                               segment_time=args.len,
                               sampling_rate=args.sr), files)
-        
+
         for _ in tqdm(processed, total=len(files)):
             pass
-        
 
 
 if __name__ == "__main__":
