@@ -1,4 +1,4 @@
-import subprocess
+import os
 
 import setuptools
 
@@ -8,13 +8,11 @@ with open("README.md", "r") as readme:
 with open("requirements.txt", "r") as requirements:
     requirements = requirements.read()
 
+version = os.environ["UDLS_VERSION"]
+
 setuptools.setup(
     name="udls",  # Replace with your own username
-    version=subprocess.check_output([
-        "git",
-        "describe",
-        "--abbrev=0",
-    ]).strip().decode(),
+    version=version,
     author="Antoine CAILLON",
     author_email="caillon@ircam.fr",
     description="Base class and presets for fast dataset creation inside IRCAM",
