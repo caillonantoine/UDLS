@@ -56,7 +56,9 @@ class AudioExample(object):
             dtype=PRECISION_TO_DTYPE[buf.precision],
         ).reshape(buf.shape)
 
-        if self.output_type == "jax":
+        if self.output_type == "numpy":
+            pass
+        elif self.output_type == "jax":
             array = jnp.array(array)
         elif self.output_type == "torch":
             array = torch.from_numpy(array)
