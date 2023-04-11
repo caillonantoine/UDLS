@@ -74,6 +74,9 @@ class AudioExample(object):
         buffer.shape.extend(array.shape)
         buffer.precision = DTYPE_TO_PRECISION[dtype]
 
+    def as_dict(self):
+        return {k: self.get(k) for k in self.ae.buffers}
+
     def __str__(self) -> str:
         repr = []
         repr.append("AudioExample(")
