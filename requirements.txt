@@ -4,3 +4,4 @@ librosa>=0.7.1
 tqdm>=4.36.1
 numpy>=1.17.2
 protobuf
+Flask>=2.2.3

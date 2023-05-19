@@ -25,8 +25,10 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     entry_points={
-        "console_scripts":
-        ["resample = udls.resample:main", "duration = udls.duration:main"]
+        "console_scripts": [
+            "resample = udls.resample:main", "duration = udls.duration:main",
+            "serve_dataset = udls.serve:main"
+        ]
     },
     install_requires=requirements.split("\n"),
     python_requires='>=3.7',
