@@ -1,5 +1,6 @@
 import argparse
 import base64
+import os
 import sys
 
 import flask
@@ -45,6 +46,11 @@ def main():
         ae = base64.b64encode(bytes(ae))
 
         return ae
+
+    @app.route("/")
+    def root():
+        return (f"<h1>UDLS remote serving<h1>"
+                f"Current dataset: {os.path.abspath(args.db_path)}")
 
     app.run("0.0.0.0", port=args.port)
 
