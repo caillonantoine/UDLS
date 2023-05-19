@@ -52,7 +52,7 @@ def main():
         return (f"<h1>UDLS remote serving<h1>"
                 f"Current dataset: {os.path.abspath(args.db_path)}")
 
-    app.run("0.0.0.0", port=args.port)
+    app.run("0.0.0.0", port=args.port, debug=False)
 
 
 if __name__ == "__main__":
