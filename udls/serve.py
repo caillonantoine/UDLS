@@ -1,5 +1,6 @@
 import argparse
 import base64
+import logging
 import os
 import sys
 
@@ -10,6 +11,8 @@ from . import AudioExample
 
 
 def main():
+
+    logging.basicConfig(level=logging.INFO)
     parser = argparse.ArgumentParser(description='Remote dataset serving')
     parser.add_argument("db_path", help="dataset path")
     parser.add_argument("port", type=int, help="port to serve")
@@ -23,6 +26,7 @@ def main():
         readahead=False,
     )
 
+    logging.info("parsing dataset")
     with env.begin() as txn:
         keys = list(txn.cursor().iternext(values=False))
 
@@ -52,6 +56,7 @@ def main():
         return (f"<h1>UDLS remote serving<h1>"
                 f"Current dataset: {os.path.abspath(args.db_path)}")
 
+    logging.info("starting server")
     app.run("0.0.0.0", port=args.port, debug=False)
 
 
