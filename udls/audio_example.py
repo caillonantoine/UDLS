@@ -54,7 +54,7 @@ class AudioExample(object):
         array = np.frombuffer(
             buf.data,
             dtype=PRECISION_TO_DTYPE[buf.precision],
-        ).reshape(buf.shape)
+        ).reshape(buf.shape).copy()
 
         if self.output_type == "numpy":
             pass
