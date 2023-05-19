@@ -6,8 +6,31 @@ import sys
 
 import flask
 import lmdb
+import requests
+from torch.utils import data
 
 from . import AudioExample
+
+
+class HTTPAudioExampleDataset(data.Dataset):
+
+    def __init__(self, url: str):
+        super().__init__()
+        self.url = url
+
+        self.length = int(self.fetch_content("len"))
+
+    def __len__(self):
+        return self.length
+
+    def __getitem__(self, index: int):
+        ae = self.fetch_content("get", index)
+        ae = AudioExample(base64.b64decode(ae))
+        return ae.as_dict()
+
+    def fetch_content(self, *path):
+        url = "/".join([self.url] + list(map(str, path)))
+        return requests.get(url).text
 
 
 def main():
@@ -53,7 +76,7 @@ def main():
 
     @app.route("/")
     def root():
-        return (f"<h1>UDLS remote serving<h1>"
+        return (f"<h1>UDLS remote serving</h1>"
                 f"Current dataset: {os.path.abspath(args.db_path)}")
 
     logging.info("starting server")
