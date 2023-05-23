@@ -68,9 +68,9 @@ def main():
             return "invalid index"
 
         with env.begin() as txn:
-            ae = AudioExample(txn.get(keys[index]))
+            ae = txn.get(keys[index])
 
-        ae = base64.b64encode(bytes(ae))
+        ae = base64.b64encode(ae)
 
         return ae
 
